@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+	<html>
+	<head><base href="_w_619ffd7112e2bcf9d05350867c429b8e3d6910ee05c5fae1/">
+
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<script type="application/shiny-singletons"></script>
+	<script type="application/html-dependencies">jquery[1.11.0];shiny[0.10.0];jslider[1];bootstrap[2.3.2];bootstrap-responsive[2.3.2]</script>
+	<script src="shared/jquery.js"></script>
+
+	<link href="shared/shiny.css" rel="stylesheet" />
+
+	<script src="shared/shiny.js"></script>
+
+	<link href="shared/slider/css/jquery.slider.min.css" rel="stylesheet" />
+
+	<script src="shared/slider/js/jquery.slider.min.js"></script>
+
+	<link href="shared/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+
+	<script src="shared/bootstrap/js/bootstrap.min.js"></script>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="shared/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet" />
+
+	<title>Will I Go Broke During Retirement?</title>
+	<script src="__assets__/sockjs-0.3.min.js"></script>
+
+	<script src="__assets__/shiny-server-pro.js"></script>
+
+	<link rel="stylesheet" type="text/css" href="__assets__/shiny-server.css"/>
+
+	
+	</head>
+	<body>
+	<div class="container-fluid">
+	<h2 style="padding: 10px 0px;">Will I Go Broke During Retirement?</h2>
+	<div class="row-fluid">
+	<div class="span8">
+	<div id="documentationText" class="shiny-text-output"></div>
+	<div id="distPlot" class="shiny-plot-output" style="width: 100% ; height: 2200px"></div>
+	</div>
+	<div class="span4">
+	<form class="well">
+	<span class="help-block">(adjust slider bars to simulate a retirement scenario)
+	</span>
+	<div>
+	<label class="control-label" for="age.now">Current Age:</label>
+	<input id="age.now" type="slider" name="age.now" value="59" class="jslider" data-from="55" data-to="110" data-step="1" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="#,##0.#####" data-smooth="FALSE"/>
+	</div>
+	<div>
+	<label class="control-label" for="years.wait">Years Until Retirement:</label>
+	<input id="years.wait" type="slider" name="years.wait" value="0" class="jslider" data-from="0" data-to="40" data-step="1" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="#,##0.#####" data-smooth="FALSE"/>
+	</div>
+	<div>
+	<label class="control-label" for="n.obs">Length of Projection (years):</label>
+	<input id="n.obs" type="slider" name="n.obs" value="20" class="jslider" data-from="0" data-to="40" data-step="1" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="#,##0.#####" data-smooth="FALSE"/>
+	</div>
+	<div>
+	<label class="control-label" for="social.security">Social Security Payment:</label>
+	<input id="social.security" type="slider" name="social.security" value="1000" class="jslider" data-from="0" data-to="50000" data-step="100" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="$#,##0" data-smooth="FALSE"/>
+	</div>
+	<div>
+	<label class="control-label" for="social.security.start">Social Security Start Age:</label>
+	<input id="social.security.start" type="slider" name="social.security.start" value="67.5" class="jslider" data-from="67.5" data-to="72" data-step="0.5" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="#,##0.#####" data-scale="|;|;|;|;|;|;|;|;|;|" data-smooth="FALSE"/>
+	</div>
+	<div>
+	<label class="control-label" for="liquid.n401Ks">Liquid Assets and 401Ks:</label>
+	<input id="liquid.n401Ks" type="slider" name="liquid.n401Ks" value="5e+05" class="jslider" data-from="0" data-to="3e+06" data-step="10000" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="$#,##0" data-smooth="FALSE"/>
+	</div>
+	<div>
+	<label class="control-label" for="total.pension">Pension Lump Sum:</label>
+	<input id="total.pension" type="slider" name="total.pension" value="2e+06" class="jslider" data-from="1e+06" data-to="3500000" data-step="1e+05" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="$#,##0" data-scale="|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|" data-smooth="FALSE"/>
+	</div>
+	<div>
+	<label class="control-label" for="number.increments">Pension Amortized Over (# payments):</label>
+	<input id="number.increments" type="slider" name="number.increments" value="1" class="jslider" data-from="1" data-to="10" data-step="1" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="#,##0.#####" data-scale="|;|;|;|;|;|;|;|;|;|" data-smooth="FALSE"/>
+	</div>
+	<div>
+	<label class="control-label" for="capital.contribs">Continuing Capital Contributions (annual):</label>
+	<input id="capital.contribs" type="slider" name="capital.contribs" value="1000" class="jslider" data-from="0" data-to="50000" data-step="1000" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="$#,##0" data-smooth="FALSE"/>
+	</div>
+	<div>
+	<label class="control-label" for="years.contributing">Years Continuing to Contribute to Capital:</label>
+	<input id="years.contributing" type="slider" name="years.contributing" value="2" class="jslider" data-from="0" data-to="20" data-step="1" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="#,##0.#####" data-scale="|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|;|" data-smooth="FALSE"/>
+	</div>
+	<div>
+	<label class="control-label" for="annual.mean.return">Investment Return (annual %):</label>
+	<input id="annual.mean.return" type="slider" name="annual.mean.return" value="5" class="jslider" data-from="0" data-to="30" data-step="0.5" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="#,##0.#####" data-smooth="FALSE"/>
+	</div>
+	<div>
+	<label class="control-label" for="annual.ret.std.dev">Investment Volatility (annual %):</label>
+	<input id="annual.ret.std.dev" type="slider" name="annual.ret.std.dev" value="7" class="jslider" data-from="0" data-to="25" data-step="0.1" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="#,##0.#####" data-smooth="FALSE"/>
+	</div>
+	<div>
+	<label class="control-label" for="annual.inflation">Inflation (annual %):</label>
+	<input id="annual.inflation" type="slider" name="annual.inflation" value="2.5" class="jslider" data-from="0" data-to="20" data-step="0.1" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="#,##0.#####" data-smooth="FALSE"/>
+	</div>
+	<div>
+	<label class="control-label" for="annual.inf.std.dev">Inflation Volatility (annual %):</label>
+	<input id="annual.inf.std.dev" type="slider" name="annual.inf.std.dev" value="1.5" class="jslider" data-from="0" data-to="5" data-step="0.05" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="#,##0.#####" data-smooth="FALSE"/>
+	</div>
+	<div>
+	<label class="control-label" for="monthly.withdrawals">Monthly Capital Withdrawals:</label>
+	<input id="monthly.withdrawals" type="slider" name="monthly.withdrawals" value="10000" class="jslider" data-from="0" data-to="1e+05" data-step="1000" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="$#,##0" data-smooth="FALSE"/>
+	</div>
+	<div>
+	<label class="control-label" for="n.sim">Number of Simulations:</label>
+	<input id="n.sim" type="slider" name="n.sim" value="200" class="jslider" data-from="0" data-to="2000" data-step="1" data-skin="plastic" data-round="FALSE" data-locale="us" data-format="#,##0.#####" data-smooth="FALSE"/>
+	</div>
+	<span class="help-block">Idea and original code by Pierre Chretien, updated by Michael Kapler, and then Lin Crampton. Source at https://github.com/donpancho/time2retire. Comments/complaints to dhainesworth2001@gmail.com</span>
+	</form>
+	</div>
+	</div>
+	</div>
+	</body>
+	</html>
